@@ -12,13 +12,11 @@ import Test from './Test'
 
 function App({data, userModel}) {
   return (
-    <div className="vh-100 w-100 d-flex">
+    <div className="vh-100 w-100" style={{minHeight: '100vh', maxHeight: '100vh'}}>
       {/* <StarPlot data={data}/> */}
       <TabSwitch>
-        <InfoView icon={<BsInfoCircle/>} title="Information"/>
-        <ParticipantsView userModel={userModel} icon={<BsPerson/>} title="Participants"/>
         <GroupOverview userModel={userModel} icon={<BsPeople/>} title="Groups"/>
-        <Overview icon={<BsBarChartLine/>} title="Overview"/>
+        <ParticipantsView userModel={userModel} icon={<BsPerson/>} title="Participants"/>
       </TabSwitch>
     </div>
   )

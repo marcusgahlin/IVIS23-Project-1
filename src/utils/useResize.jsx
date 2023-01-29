@@ -14,7 +14,11 @@ export const useResize = (myRef) => {
     myRef.current && myRef.current.addEventListener('resize', handleResize)
 
     return () => {
+      try {
       myRef.current.removeEventListener('resize', handleResize)
+      } catch(error) {
+        console.log(error)
+      }
     }
   }, [myRef])
 

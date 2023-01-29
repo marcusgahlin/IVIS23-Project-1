@@ -1,3 +1,4 @@
+import { group } from "d3";
 import { GroupModel } from "./GroupModel";
 
 // Tror inte vi behöver denna, räcker nog med ett state
@@ -19,7 +20,6 @@ export class UserModel {
   getId(){
     // Checks available id:s among 1,2,3,4,5....
     for (let i = 1; i <= this.groups.length; i++){
-      console.log('GROUPS: ', this.groups)
       if (!this.groups.some((group) => group.id === i)) {
         return i
       }
@@ -31,17 +31,29 @@ export class UserModel {
     this.groups = [...this.groups, new GroupModel(this.getId())]
     // this.updateGroupSkills()
     this.notifyObservers()
+    /*
     console.log('ADDED GROUP')
     console.log(this.groups)
+    */
   }
 
   deleteGroup(id){
     // reset all members assigned groups DETTA KAN BLI ERROR
-    this.groups.filter(group => group.id === id).members.forEach((member) => member.group = null )
-    // delete the group
-    this.groups = this.groups.filter((group) => group.id !== id)
-    // this.updateGroupSkills()
-    this.notifyObservers()
+    let groupIndex = null
+    for (let i = 0; i<this.groups.length; i++){
+      if (this.groups[i].id === id) {
+        groupIndex = i
+        break
+      }
+    }
+   
+    if (Number.isInteger(groupIndex)){
+      this.groups[groupIndex].members.forEach((member) => member.group = null )
+      // delete the group
+      this.groups = this.groups.filter((group) => group.id !== id)
+      // this.updateGroupSkills()
+      this.notifyObservers()
+    }
   }
 
   assignGroup(id, value){

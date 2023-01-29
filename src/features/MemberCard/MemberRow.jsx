@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { BsCheckCircleFill, BsPerson } from "react-icons/bs";
+import { axisLabels } from "../../utils/axisLabels";
 
-export default function MemberRow ({member, userModel, group}) {
+export default function MemberRow ({member, userModel, group, filterKey}) {
   /*
   const [memberState, setMemberState] = useState(member)
 
@@ -40,7 +41,7 @@ export default function MemberRow ({member, userModel, group}) {
       {/* Group diagram here */}
       <div className='col-4'>{member.name}</div>
       <div className='bg-light rounded border px-1 small'>Group: {member.group ? member.group : '-'}</div>
-
+      {filterKey !== 'name' && <div className="small ms-5 text-secondary">{axisLabels[filterKey].charAt(0).toUpperCase() + axisLabels[filterKey].slice(1)}: {member.skills[filterKey]}</div>}
   </div>
   )
 }

@@ -42,14 +42,11 @@ export default function ParticipantsView({userModel}){
   }, [allMembers, desc, filterKey])
   */
   useEffect(()=>{
-    console.log('JAAAA')
     const sorted = sortOperator(Object.values(userModel.members), filterKey, desc)
-    console.log(sorted)
     setSortedMembers(sorted)
   },[userModel.members, filterKey, desc])
 
   function handleReSize(){
-    console.log('RESIZE HAPPENED: ', plotRef.current.offsetWidth)
     setWidth(plotRef.current.offsetWidth)
     setHeight(plotRef.current.offsetHeight)
   }
@@ -60,17 +57,13 @@ export default function ParticipantsView({userModel}){
 
 
   return (
-    <div className='d-flex flex-column h-100 p-3 pt-4'>
-      <p className="m-0 fs-4 fw-light border-bottom border-2">Participants</p>
-      <div className="w-100 d-flex h-100">
-      <div className="d-flex flex-column w-50">
-          <div className='d-flex align-items-center gap-2'>
-            <p className="m-0 fs-5 fw-light mt-2"> </p>
-            </div>
-            <div className="d-flex mb-2">
+    <div className='d-flex flex-column vh-100 h-100 mh-100 p-3 pt-2'>
+      <div className="d-flex h-100">
+        {/* Participants list */}
+        <div className="d-flex flex-column w-50">
+          <div className="d-flex my-2">
             <InputGroup>
               <InputGroup.Text id='basic-addon2' className='bg-white'>Sort by:</InputGroup.Text>
-
               <Form.Select 
               aria-label="Default select example"
               onChange={((e) => setFilterKey(e.target.value))}
@@ -83,27 +76,28 @@ export default function ParticipantsView({userModel}){
 
             </InputGroup>
             <Button className='btn-light border' onClick={()=>setDesc(!desc)}>{DescButtonIcon(desc, filterKey)}</Button>
-            </div>
-            <div className='d-flex flex-column overflow-scroll'>
-                {sortedMembers.map((member, idx) => 
-                    <MemberRow2 key={idx} member={member} selectedMember={{data: selectedMember, setData: setSelectedMember}}/>     
-                )}
-              </div>
           </div>
-        <div className="w-50 h-100 flex-column overflow-hidden" ref={plotRef}>
+          <div className='d-flex flex-column overflow-scroll'>
+              {sortedMembers.map((member, idx) => 
+                  <MemberRow2 key={idx} member={member} selectedMember={{data: selectedMember, setData: setSelectedMember}} filterKey={filterKey}/>     
+              )}
+          </div>
+        </div>
+        {/* Plots */}
+        <div className="w-50 flex-column mh-100 h-100" ref={plotRef}>
           <p className="fs-5 m-0 ps-5 mt-2 fw-light">{selectedMember ? `${userModel.members[selectedMember].name}'s skills compared to the average participant` : `The average participant's skill`}</p>
           <BarPlotMemberAvgWrapper memberAvg={userModel.avg_member} member={selectedMember ? userModel.members[selectedMember] : null} width={width} height={height}/>
-          <div className="ps-5 w-100">
+          <div className="ps-5 w-100 d-flex flex-column">
             <p className='m-0 px-2 fw-light fs-5'>Interests - Keywords</p>
             <div className='d-flex px-2 flex-wrap gap-1'>
             {selectedMember 
-            ? userModel.members[selectedMember].keywords.map((word) => { return (<div className='border rounded-pill bg-primary bg-opacity-10 fw-light px-2 text-nowrap'>{word}</div>)})
-            : ''}
+              ? userModel.members[selectedMember].keywords.map((word) => { return (<div className='border rounded-pill bg-primary bg-opacity-10 fw-light px-2 text-nowrap'>{word}</div>)})
+              : ''}
             </div>
           </div>
-          <div className="px-5 mt-3">
+          <div className="px-5 mt-3 d-flex flex-column">
             <p className='m-0 px-2 fw-light fs-5'>Interests - Full</p>
-            <div className={`border rounded p-2 overflow-scroll ${selectedMember && !userModel.members[selectedMember].info ? 'text-danger': '' }`}>
+            <div className={`border rounded p-2 d-flex flex-column overflow-auto ${selectedMember && !userModel.members[selectedMember].info ? 'text-danger': '' }`}>
               {selectedMember 
               ? userModel.members[selectedMember].info 
               ? userModel.members[selectedMember].info

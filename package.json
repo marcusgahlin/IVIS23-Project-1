@@ -1,8 +1,8 @@
 {
-  "name": "IVIS23-Project-1",
+  "name": "dh2321-project-1",
   "private": true,
   "version": "0.0.0",
-  "homepage": "/IVIS23-Project-1/",
+  "homepage": "pages/mgah/DH2321-project-1/",
   "type": "module",
   "scripts": {
     "dev": "vite",

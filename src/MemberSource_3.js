@@ -462,10 +462,10 @@ export const MembersSource_3 = {
     id: 9,
     name: "Daybeha",
     group: null,
-    info: "code and sport",
+    info: "code and sports",
     keywords: [
       "code",
-      "sport"
+      "sports"
     ],
     skills: {
       visualization: 6,
@@ -567,7 +567,7 @@ export const MembersSource_3 = {
       "computer gaming",
       "reading",
       "films",
-      "bass guitar!"
+      "bass guitar"
     ],
     skills: {
       visualization: 6,

@@ -7,8 +7,8 @@ export default function BarPlotMemberAvg(svgRef, avgMember, member, divHeight, d
   const padding = {x: 10, y: 10}
   const width = divWidth - margin.left - margin.right
   const height = divHeight - margin.top - margin.bottom
-  console.log('AVGMEMBER: ', avgMember)
-  console.log('MEMBER: ', member)
+  // console.log('AVGMEMBER: ', avgMember)
+  // console.log('MEMBER: ', member)
 
   //Remove whatever chart with the same id/class was present before
   d3.select(svgRef).select("svg").remove();
@@ -44,7 +44,7 @@ export default function BarPlotMemberAvg(svgRef, avgMember, member, divHeight, d
       data = Object.keys(axisLabels).reduce((acc, groupKey) => 
       [...acc, { group: axisLabels[groupKey], 'Avarage participant': avgMember.skills[groupKey], [member.name]: member.skills[groupKey]}],[])
   }
-  console.log('DATA: ', data)
+  // console.log('DATA: ', data)
  // data = {group: }
   /*
   // List of subgroups = header of the csv files = soil condition here
