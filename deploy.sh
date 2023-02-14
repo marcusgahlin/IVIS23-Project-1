@@ -9,18 +9,28 @@ git checkout master
 # build the static app
 npm run build
 
-# navigate into the build output directory
-cd dist
-
 # bypass Jekyll processing
-echo > .nojekyll
+echo > dist/.nojekyll
+
 
 # Provide a helpful timestamp to commits 
-git add -A
+# this initiates a sub-git-repo (uggly work-around) to make sure we only get the dist files in the commit to github-pages
+# git init
+# create a branch in sub-git-repo
+# git checkout -B main
+# do the commit (only contains dist)
+# git add -A
+#
+
+git add .
 git commit -m "GitHub Pages deploy script
-[$(date '+%F@%T (%Z)')]"
+# [$(date '+%F@%T (%Z)')]"
+
+#
+git subtree push --prefix dist origin gh-pages
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f origin master:gh-pages
+# push the contents of the main (branch in sub-git-repo) to gh-pages branch
+# git push -f origin main:gh-pages
 
-cd -
+# cd -
