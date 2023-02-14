@@ -16,7 +16,8 @@ cd dist
 echo > .nojekyll
 
 # Provide a helpful timestamp to commits 
-git add -A
+cd ..
+git add dist
 git commit -m "GitHub Pages deploy script
 [$(date '+%F@%T (%Z)')]"
 
