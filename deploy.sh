@@ -27,7 +27,7 @@ git commit -m "GitHub Pages deploy script
 # [$(date '+%F@%T (%Z)')]"
 
 #
-git subtree push --prefix dist origin gh-pages
+git subtree push --prefix dist origin remotes/origin/gh-pages
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 # push the contents of the main (branch in sub-git-repo) to gh-pages branch
