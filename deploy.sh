@@ -21,6 +21,6 @@ git commit -m "GitHub Pages deploy script
 [$(date '+%F@%T (%Z)')]"
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:marcusgahlin/IVIS23-Project-1.git main:gh-pages
+git push -f origin gh-pages
 
 cd -
