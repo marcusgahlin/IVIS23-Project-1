@@ -21,6 +21,6 @@ git commit -m "GitHub Pages deploy script
 [$(date '+%F@%T (%Z)')]"
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git subtree push --prefix dist origin gh-pages
+git push -f origin master:gh-pages
 
 cd -
